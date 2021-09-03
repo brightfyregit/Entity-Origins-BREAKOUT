@@ -1,0 +1,16 @@
+:0:You feel strange 
+:0:You begin to feel your body, hear your surroundings 
+:0:All you can hear is computery and machinery sounds 
+:1:You try to open your eyes guided by instinct, but it is only blurry and wet 
+:1:Your vision slowly starts to focus, fading an image into sight... 
+:2:Tiny hands belonging to you... a tall man, his back facing you
+:2:Slowly looking around to see your surroundings, something catches your attention 
+:3:A strange device, foreign and unknown, but familiar 
+:3:Your instincts tell you to take it
+:4:YOU NEED THE DEVICE
+:5:...
+:6:...
+:7:...
+:8:Shit.
+:9:Subject 06... is stable...
+:10:Beginning testing.

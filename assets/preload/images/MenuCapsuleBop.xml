@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="MenuCapsuleBop.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="CapsuleBoping0000" x="0" y="0" width="1470" height="863" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0001" x="1470" y="0" width="1522" height="896"/>
+	<SubTexture name="CapsuleBoping0002" x="2992" y="0" width="1521" height="895" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0003" x="4513" y="0" width="1518" height="893" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0004" x="6031" y="0" width="1514" height="890" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0005" x="0" y="896" width="1507" height="886" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0006" x="1507" y="896" width="1499" height="882" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0007" x="3006" y="896" width="1489" height="875" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0008" x="4495" y="896" width="1477" height="868" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0009" x="5972" y="896" width="1464" height="859" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0010" x="0" y="1782" width="1448" height="849" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0011" x="1448" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0012" x="2879" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0013" x="4310" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0014" x="4310" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0015" x="0" y="0" width="1470" height="863" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0016" x="1470" y="0" width="1522" height="896"/>
+	<SubTexture name="CapsuleBoping0017" x="2992" y="0" width="1521" height="895" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0018" x="4513" y="0" width="1518" height="893" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0019" x="6031" y="0" width="1514" height="890" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0020" x="0" y="896" width="1507" height="886" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0021" x="1507" y="896" width="1499" height="882" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0022" x="3006" y="896" width="1489" height="875" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0023" x="4495" y="896" width="1477" height="868" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0024" x="5972" y="896" width="1464" height="859" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0025" x="0" y="1782" width="1448" height="849" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0026" x="1448" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0027" x="2879" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0028" x="5741" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+	<SubTexture name="CapsuleBoping0029" x="5741" y="1782" width="1431" height="837" frameX="0" frameY="0" frameWidth="1522" frameHeight="896"/>
+</TextureAtlas>
