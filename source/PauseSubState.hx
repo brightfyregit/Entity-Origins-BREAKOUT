@@ -1,5 +1,7 @@
 package;
 
+import flixel.util.FlxTimer;
+import flixel.effects.FlxFlicker;
 import flixel.input.gamepad.FlxGamepad;
 import openfl.Lib;
 #if windows
@@ -30,6 +32,12 @@ class PauseSubState extends MusicBeatSubstate
 	
 	var offsetChanged:Bool = false;
 
+	var bg:FlxSprite;
+
+	var levelInfo:FlxText;
+
+	var levelDifficulty:FlxText;
+
 	public function new(x:Float, y:Float)
 	{
 		super();
@@ -47,19 +55,19 @@ class PauseSubState extends MusicBeatSubstate
 
 		FlxG.sound.list.add(pauseMusic);
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
 
-		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
+		levelInfo = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 
-		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
+		levelDifficulty = new FlxText(20, 15 + 32, 0, "", 32);
 		levelDifficulty.text += CoolUtil.difficultyFromInt(PlayState.storyDifficulty).toUpperCase();
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
@@ -213,7 +221,12 @@ class PauseSubState extends MusicBeatSubstate
 			switch (daSelected)
 			{
 				case "Resume":
-					close();
+					if (!returning)
+					{
+						FlxG.sound.play(Paths.sound('confirmMenu'));
+						closeState();
+						returning = true;
+					}
 				case "Restart Song":
 					PlayState.startTime = 0;
 					if (PlayState.instance.useVideo)
@@ -265,11 +278,38 @@ class PauseSubState extends MusicBeatSubstate
 		}
 	}
 
+	var returning:Bool = false;
+
 	override function destroy()
 	{
 		pauseMusic.destroy();
 
 		super.destroy();
+	}
+
+	var daTime:Float = 0.5;
+
+	function closeState()
+	{
+		FlxTween.tween(bg, {alpha: 0}, daTime);
+		for (i in 0...grpMenuShit.members.length)
+		{
+			if (i == curSelected)
+			{
+				FlxFlicker.flicker(grpMenuShit.members[i], 1, 0.06, false, false);
+			}
+			else
+			{
+				FlxTween.tween(grpMenuShit.members[i], {alpha: 0.0}, 0.4, {ease: FlxEase.quadIn});
+			}
+		}
+		FlxTween.tween(levelInfo, {alpha: 0, y: 15}, daTime, {ease: FlxEase.quartInOut});
+		FlxTween.tween(levelDifficulty, {alpha: 0, y: 15}, daTime, {ease: FlxEase.quartInOut});
+		FlxTween.tween(perSongOffset, {alpha: 0}, daTime, {ease: FlxEase.quartInOut});
+		new FlxTimer().start(daTime, function(tmr:FlxTimer)
+		{
+			close();
+		});
 	}
 
 	function changeSelection(change:Int = 0):Void

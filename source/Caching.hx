@@ -56,9 +56,14 @@ class Caching extends MusicBeatState
 
 		KadeEngineData.initSave();
 
+        FlxG.sound.volume = 1;
+        FlxG.sound.muted = false;
+		FlxG.fixedTimestep = false;
+		FlxG.mouse.useSystemCursor = true;
 		FlxG.mouse.visible = false;
-
-		FlxG.worldBounds.set(0,0);
+		FlxG.console.autoPause = false;
+        FlxG.autoPause = false;
+        FlxGraphic.defaultPersist = true;
 
 		bitmapData = new Map<String,FlxGraphic>();
 

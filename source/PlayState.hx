@@ -2222,120 +2222,12 @@ class PlayState extends MusicBeatState
 
 			closestNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 
-			// Make sure Girlfriend cheers only for certain songs
-			if (allowedToHeadbang)
-			{
-				// Don't animate GF if something else is already animating her (eg. train passing)
-				if (gf.animation.curAnim.name == 'danceLeft'
-					|| gf.animation.curAnim.name == 'danceRight'
-					|| gf.animation.curAnim.name == 'idle')
-				{
-					// Per song treatment since some songs will only have the 'Hey' at certain times
-					switch (curSong)
-					{
-						case 'Philly Nice':
-							{
-								// General duration of the song
-								if (curBeat < 250)
-								{
-									// Beats to skip or to stop GF from cheering
-									if (curBeat != 184 && curBeat != 216)
-									{
-										if (curBeat % 16 == 8)
-										{
-											// Just a garantee that it'll trigger just once
-											if (!triggeredAlready)
-											{
-												gf.playAnim('cheer');
-												triggeredAlready = true;
-											}
-										}
-										else
-											triggeredAlready = false;
-									}
-								}
-							}
-						case 'Bopeebo':
-							{
-								// Where it starts || where it ends
-								if (curBeat > 5 && curBeat < 130)
-								{
-									if (curBeat % 8 == 7)
-									{
-										if (!triggeredAlready)
-										{
-											gf.playAnim('cheer');
-											triggeredAlready = true;
-										}
-									}
-									else
-										triggeredAlready = false;
-								}
-							}
-						case 'Blammed':
-							{
-								if (curBeat > 30 && curBeat < 190)
-								{
-									if (curBeat < 90 || curBeat > 128)
-									{
-										if (curBeat % 4 == 2)
-										{
-											if (!triggeredAlready)
-											{
-												gf.playAnim('cheer');
-												triggeredAlready = true;
-											}
-										}
-										else
-											triggeredAlready = false;
-									}
-								}
-							}
-						case 'Cocoa':
-							{
-								if (curBeat < 170)
-								{
-									if (curBeat < 65 || curBeat > 130 && curBeat < 145)
-									{
-										if (curBeat % 16 == 15)
-										{
-											if (!triggeredAlready)
-											{
-												gf.playAnim('cheer');
-												triggeredAlready = true;
-											}
-										}
-										else
-											triggeredAlready = false;
-									}
-								}
-							}
-						case 'Eggnog':
-							{
-								if (curBeat > 10 && curBeat != 111 && curBeat < 220)
-								{
-									if (curBeat % 8 == 7)
-									{
-										if (!triggeredAlready)
-										{
-											gf.playAnim('cheer');
-											triggeredAlready = true;
-										}
-									}
-									else
-										triggeredAlready = false;
-								}
-							}
-					}
-				}
-			}
-
 			#if cpp
 			if (luaModchart != null)
 				luaModchart.setVar("mustHit", currentSection.mustHitSection);
 			#end
 
-			/*if (camFollow.x != dad.getMidpoint().x + 150 && !currentSection.mustHitSection)
+			if (camFollow.x != dad.getMidpoint().x + 150 && !currentSection.mustHitSection)
 			{
 				var offsetX = 0;
 				var offsetY = 0;
@@ -2346,7 +2238,7 @@ class PlayState extends MusicBeatState
 					offsetY = luaModchart.getVar("followYOffset", "float");
 				}
 				#end
-				camFollow.setPosition(dad.getMidpoint().x + 150 + offsetX, dad.getMidpoint().y - 100 + offsetY);
+				camFollow.setPosition(dad.getMidpoint().x + 170 + offsetX, dad.getMidpoint().y + 75 + offsetY);
 				#if cpp
 				if (luaModchart != null)
 					luaModchart.executeState('playerTwoTurn', []);
@@ -2364,27 +2256,13 @@ class PlayState extends MusicBeatState
 					offsetY = luaModchart.getVar("followYOffset", "float");
 				}
 				#end
-				camFollow.setPosition(boyfriend.getMidpoint().x - 100 + offsetX, boyfriend.getMidpoint().y - 100 + offsetY);
+				camFollow.setPosition(dad.getMidpoint().x + 300 + offsetX, dad.getMidpoint().y + 135 + offsetY);
 
 				#if cpp
 				if (luaModchart != null)
 					luaModchart.executeState('playerOneTurn', []);
 				#end
-
-				switch (Stage.curStage)
-				{
-					case 'limo':
-						camFollow.x = boyfriend.getMidpoint().x - 300;
-					case 'mall':
-						camFollow.y = boyfriend.getMidpoint().y - 200;
-					case 'school':
-						camFollow.x = boyfriend.getMidpoint().x - 200;
-						camFollow.y = boyfriend.getMidpoint().y - 200;
-					case 'schoolEvil':
-						camFollow.x = boyfriend.getMidpoint().x - 200;
-						camFollow.y = boyfriend.getMidpoint().y - 200;
-				}
-			}*/
+			}
 		}
 
 		if (camZooming && Conductor.bpm < 320)
@@ -2666,7 +2544,15 @@ class PlayState extends MusicBeatState
 						if (daNote.spotInLine != daNote.parent.children.length - 1)
 						{
 							var singData:Int = Std.int(Math.abs(daNote.noteData));
-							dad.playAnim('sing' + dataSuffix[singData] + altAnim, true);
+
+							var delay:Int = 0;
+							
+							if (daNote.isSustainNote)
+							{
+								delay = 3;
+							}
+
+							dad.playAnim('sing' + dataSuffix[singData] + altAnim, true, false, delay);
 
 							if (FlxG.save.data.cpuStrums)
 							{
@@ -2700,35 +2586,43 @@ class PlayState extends MusicBeatState
 					else
 					{
 						var singData:Int = Std.int(Math.abs(daNote.noteData));
-							dad.playAnim('sing' + dataSuffix[singData] + altAnim, true);
 
-							if (FlxG.save.data.cpuStrums)
+						var delay:Int = 0;
+							
+						if (daNote.isSustainNote)
+						{
+							delay = 3;
+						}
+
+						dad.playAnim('sing' + dataSuffix[singData] + altAnim, true, false, delay);
+
+						if (FlxG.save.data.cpuStrums)
+						{
+							cpuStrums.forEach(function(spr:StaticArrow)
 							{
-								cpuStrums.forEach(function(spr:StaticArrow)
+								pressArrow(spr, spr.ID, daNote);
+								/*
+								if (spr.animation.curAnim.name == 'confirm' && SONG.noteStyle != 'pixel')
 								{
-									pressArrow(spr, spr.ID, daNote);
-									/*
-									if (spr.animation.curAnim.name == 'confirm' && SONG.noteStyle != 'pixel')
-									{
-										spr.centerOffsets();
-										spr.offset.x -= 13;
-										spr.offset.y -= 13;
-									}
-									else
-										spr.centerOffsets();
-									*/
-								});
-							}
+									spr.centerOffsets();
+									spr.offset.x -= 13;
+									spr.offset.y -= 13;
+								}
+								else
+									spr.centerOffsets();
+								*/
+							});
+						}
 
-							#if cpp
-							if (luaModchart != null)
-								luaModchart.executeState('playerTwoSing', [Math.abs(daNote.noteData), Conductor.songPosition]);
-							#end
+						#if cpp
+						if (luaModchart != null)
+							luaModchart.executeState('playerTwoSing', [Math.abs(daNote.noteData), Conductor.songPosition]);
+						#end
 
-							dad.holdTimer = 0;
+						dad.holdTimer = 0;
 
-							if (SONG.needsVoices)
-								vocals.volume = 1;
+						if (SONG.needsVoices)
+							vocals.volume = 1;
 					}
 					daNote.active = false;
 
@@ -2911,13 +2805,13 @@ class PlayState extends MusicBeatState
 			if (PlayStateChangeables.botPlay)
 			{
 				playerStrums.forEach(function(spr:StaticArrow)
+				{
+					if (spr.animation.finished)
 					{
-						if (spr.animation.finished)
-						{
-							spr.playAnim('static');
-							//spr.centerOffsets();
-						}
-					});
+						spr.playAnim('static');
+						//spr.centerOffsets();
+					}
+				});
 			}
 		}
 
@@ -2933,49 +2827,49 @@ class PlayState extends MusicBeatState
 	}
 
 	public function getSectionByTime(ms:Float):SwagSection
+	{
+
+		for (i in SONG.notes)
 		{
-	
-			for (i in SONG.notes)
+			var start = TimingStruct.getTimeFromBeat((TimingStruct.getBeatFromTime(i.startTime)));
+			var end = TimingStruct.getTimeFromBeat((TimingStruct.getBeatFromTime(i.endTime)));
+
+
+			if (ms >= start && ms < end)
 			{
-				var start = TimingStruct.getTimeFromBeat((TimingStruct.getBeatFromTime(i.startTime)));
-				var end = TimingStruct.getTimeFromBeat((TimingStruct.getBeatFromTime(i.endTime)));
-
-
-				if (ms >= start && ms < end)
-				{
-					return i;
-				}
+				return i;
 			}
-	
-	
-			return null;
 		}
 
-		function recalculateAllSectionTimes()
-			{
-		
-					trace("RECALCULATING SECTION TIMES");
-		
-					for (i in 0...SONG.notes.length) // loops through sections
-					{
-						var section = SONG.notes[i];
-		
-						var currentBeat = 4 * i;
-		
-						var currentSeg = TimingStruct.getTimingAtBeat(currentBeat);
-		
-						if (currentSeg == null)
-							return;
-		
-						var start:Float = (currentBeat - currentSeg.startBeat) / ((currentSeg.bpm) / 60);
-		
-						section.startTime = (currentSeg.startTime + start) * 1000;
-		
-						if (i != 0)
-							SONG.notes[i - 1].endTime = section.startTime;
-						section.endTime = Math.POSITIVE_INFINITY;
-					}
-			}
+
+		return null;
+	}
+
+	function recalculateAllSectionTimes()
+	{
+
+		trace("RECALCULATING SECTION TIMES");
+
+		for (i in 0...SONG.notes.length) // loops through sections
+		{
+			var section = SONG.notes[i];
+
+			var currentBeat = 4 * i;
+
+			var currentSeg = TimingStruct.getTimingAtBeat(currentBeat);
+
+			if (currentSeg == null)
+				return;
+
+			var start:Float = (currentBeat - currentSeg.startBeat) / ((currentSeg.bpm) / 60);
+
+			section.startTime = (currentSeg.startTime + start) * 1000;
+
+			if (i != 0)
+				SONG.notes[i - 1].endTime = section.startTime;
+			section.endTime = Math.POSITIVE_INFINITY;
+		}
+	}
 		
 	function killGame():Void
 	{
@@ -3923,15 +3817,8 @@ class PlayState extends MusicBeatState
 					// FlxG.log.add('played imss note');
 				}
 
-			var delay:Int = 0;
-							
-			if (daNote.isSustainNote)
-			{
-				delay = 3;
-			}
-
 			// Hole switch statement replaced with a single line :)
-			boyfriend.playAnim('sing' + dataSuffix[direction] + 'miss', true, false, delay);
+			boyfriend.playAnim('sing' + dataSuffix[direction] + 'miss', true, false);
 
 			#if cpp
 			if (luaModchart != null)

@@ -32,7 +32,7 @@ class Stage
         {
 			default:
 			{
-				camZoom = 0.82;
+				camZoom = 0.9;
 				curStage = 'stage';
 
 				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('Stage_LayerTop'));

@@ -1,4 +1,8 @@
 package;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import openfl.utils.Future;
 import openfl.media.Sound;
@@ -428,7 +432,19 @@ class FreeplayState extends MusicBeatState
 				return;
 			}
 
-
+			for (i in 0...grpSongs.members.length)
+			{
+				if (i == curSelected)
+				{
+					FlxFlicker.flicker(grpSongs.members[i], 0.75, 0.06, false, false);
+					FlxFlicker.flicker(iconArray[i], 0.75, 0.06, false, false);
+				}
+				else
+				{
+					FlxTween.tween(grpSongs.members[i], {alpha: 0.0}, 0.4, {ease: FlxEase.quadIn});
+					FlxTween.tween(iconArray[i], {alpha: 0.0}, 0.4, {ease: FlxEase.quadIn});
+				}
+			}
 
 			PlayState.SONG = Song.conversionChecks(hmm);
 			PlayState.isStoryMode = false;
@@ -450,7 +466,16 @@ class FreeplayState extends MusicBeatState
 
 			PlayState.songMultiplier = rate;
 
-			LoadingState.loadAndSwitchState(new PlayState());
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+
+			FlxG.camera.fade(FlxColor.BLACK, 0.75, false);
+
+			FlxG.sound.music.fadeOut(0.75, 0);
+
+			new FlxTimer().start(0.75, function(tmr:FlxTimer)
+			{
+				LoadingState.loadAndSwitchState(new PlayState());
+			});
 
 			clean();
 		}
