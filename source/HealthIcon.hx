@@ -37,15 +37,17 @@ class HealthIcon extends FlxSprite
 
 		if (isPlayer)
 		{
-			animation.addByPrefix('loss', '06Loosing', 24, true, isPlayer);
-			animation.addByPrefix('normal', '06 Normal', 24, true, isPlayer);
-			animation.addByPrefix('win', '06Winning', 24, true, isPlayer);
+			animation.addByPrefix('loss', '06Loosing', 24, false, isPlayer);
+			animation.addByPrefix('normal', '06 Normal', 24, false, isPlayer);
+			animation.addByPrefix('normalLooped', '06 Normal', 24, true, isPlayer);
+			animation.addByPrefix('win', '06Winning', 24, false, isPlayer);
 		}
 		else
 		{
-			animation.addByPrefix('loss', 'DaidemLoosing', 24, true, isPlayer);
-			animation.addByPrefix('normal', 'DaidemNormal', 24, true, isPlayer);
-			animation.addByPrefix('win', 'DaidemWinning', 24, true, isPlayer);
+			animation.addByPrefix('loss', 'DaidemLoosing', 24, false, isPlayer);
+			animation.addByPrefix('normal', 'DaidemNormal', 24, false, isPlayer);
+			animation.addByPrefix('normalLooped', 'DaidemNormal', 24, true, isPlayer);
+			animation.addByPrefix('win', 'DaidemWinning', 24, false, isPlayer);
 		}
 
 		animation.play('normal', true);

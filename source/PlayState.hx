@@ -88,6 +88,9 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
+	var animName:String = 'normal';
+	var animName2:String = 'normal';
+
 	public static var songPosBG:FlxSprite;
 
 	public var visibleCombos:Array<FlxSprite> = [];
@@ -2010,8 +2013,6 @@ class PlayState extends MusicBeatState
 		if (health > 2)
 			health = 2;
 
-		var animName:String = 'normal';
-
 		if (healthBar.percent < 20)
 			animName = 'loss';
 		else if (healthBar.percent > 80)
@@ -2021,10 +2022,8 @@ class PlayState extends MusicBeatState
 
 		if (iconP1.animation.curAnim.finished || (animName != iconP1.animation.curAnim.name))
 		{
-			iconP1.animation.play(animName, true);
+			iconP1.animation.play(animName, false);
 		}
-
-		var animName2:String = 'normal';
 
 		if (healthBar.percent > 80)
 			animName2 = 'loss';
@@ -2035,7 +2034,7 @@ class PlayState extends MusicBeatState
 
 		if (iconP2.animation.curAnim.finished || (animName2 != iconP2.animation.curAnim.name))
 		{
-			iconP2.animation.play(animName2, true);
+			iconP2.animation.play(animName2, false);
 		}
 
 		/* if (FlxG.keys.justPressed.NINE)
@@ -4034,6 +4033,9 @@ class PlayState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
+
+		iconP1.animation.play(animName, true);
+		iconP2.animation.play(animName2, true);
 
 		if (boyfriend != null && currentSection != null)
 		{
