@@ -1,10 +1,7 @@
 package;
 
 
-import LuaClass.LuaCamera;
-import LuaClass.LuaCharacter;
 import lime.media.openal.AL;
-import LuaClass.LuaNote;
 import Song.Event;
 import openfl.media.Sound;
 #if sys
@@ -20,6 +17,9 @@ import Replay.Ana;
 import Replay.Analysis;
 #if cpp
 import webm.WebmPlayer;
+import LuaClass.LuaCamera;
+import LuaClass.LuaCharacter;
+import LuaClass.LuaNote;
 #end
 import flixel.input.keyboard.FlxKey;
 import openfl.Lib;
@@ -588,16 +588,18 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
+		#if cpp
 		if (executeModchart)
-			{
-				new LuaCamera(camGame,"camGame").Register(ModchartState.lua);
-				new LuaCamera(camHUD,"camHUD").Register(ModchartState.lua);
-				new LuaCamera(camSustains,"camSustains").Register(ModchartState.lua);
-				new LuaCamera(camSustains,"camNotes").Register(ModchartState.lua);
-				new LuaCharacter(dad,"dad").Register(ModchartState.lua);
-				new LuaCharacter(gf,"gf").Register(ModchartState.lua);
-				new LuaCharacter(boyfriend,"boyfriend").Register(ModchartState.lua);
-			}
+		{
+			new LuaCamera(camGame,"camGame").Register(ModchartState.lua);
+			new LuaCamera(camHUD,"camHUD").Register(ModchartState.lua);
+			new LuaCamera(camSustains,"camSustains").Register(ModchartState.lua);
+			new LuaCamera(camSustains,"camNotes").Register(ModchartState.lua);
+			new LuaCharacter(dad,"dad").Register(ModchartState.lua);
+			new LuaCharacter(gf,"gf").Register(ModchartState.lua);
+			new LuaCharacter(boyfriend,"boyfriend").Register(ModchartState.lua);
+		}
+		#end
 		var index = 0;
 
 		if (startTime != 0)
@@ -751,10 +753,12 @@ class PlayState extends MusicBeatState
 
 		iconP1 = new HealthIcon(boyfriend.curCharacter, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
+		iconP1.y -= 15;
 		add(iconP1);
 
 		iconP2 = new HealthIcon(dad.curCharacter, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
+		iconP2.y -= 70;
 		add(iconP2);
 
 		strumLineNotes.cameras = [camHUD];
@@ -1137,8 +1141,10 @@ class PlayState extends MusicBeatState
 		if (useVideo)
 			GlobalVideo.get().resume();
 
+		#if cpp
 		if (executeModchart)
 			luaModchart.executeState("songStart",[null]);
+		#end
 
 		#if windows
 		// Updating Discord Rich Presence (with Time Left)
@@ -2003,15 +2009,34 @@ class PlayState extends MusicBeatState
 
 		if (health > 2)
 			health = 2;
+
+		var animName:String = 'normal';
+
 		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
+			animName = 'loss';
+		else if (healthBar.percent > 80)
+			animName = 'win';
 		else
-			iconP1.animation.curAnim.curFrame = 0;
+			animName = 'normal';
+
+		if (iconP1.animation.curAnim.finished || (animName != iconP1.animation.curAnim.name))
+		{
+			iconP1.animation.play(animName, true);
+		}
+
+		var animName2:String = 'normal';
 
 		if (healthBar.percent > 80)
-			iconP2.animation.curAnim.curFrame = 1;
+			animName2 = 'loss';
+		else if (healthBar.percent < 20)
+			animName2 = 'win';
 		else
-			iconP2.animation.curAnim.curFrame = 0;
+			animName2 = 'normal';
+
+		if (iconP2.animation.curAnim.finished || (animName2 != iconP2.animation.curAnim.name))
+		{
+			iconP2.animation.play(animName2, true);
+		}
 
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
@@ -4010,10 +4035,14 @@ class PlayState extends MusicBeatState
 	{
 		super.beatHit();
 
-		if (!boyfriend.animation.curAnim.name.startsWith("sing") && (!currentSection.mustHitSection || !camZooming) && curBeat % 2 == 0)
+		if (boyfriend != null && currentSection != null)
 		{
-			boyfriend.dance();
+			if (!boyfriend.animation.curAnim.name.startsWith("sing") && (!currentSection.mustHitSection || !camZooming) && curBeat % 2 == 0)
+			{
+				boyfriend.dance();
+			}
 		}
+
 
 		if (curBeat % 4 == 0 && generatedMusic)
 		{
@@ -4052,23 +4081,6 @@ class PlayState extends MusicBeatState
 				FlxG.camera.zoom += 0.015 / songMultiplier;
 				camHUD.zoom += 0.03 / songMultiplier;
 			}
-		}
-		if (Conductor.bpm < 340)
-		{
-			iconP1.setGraphicSize(Std.int(iconP1.width + 30));
-			iconP2.setGraphicSize(Std.int(iconP2.width + 30));
-
-			iconP1.updateHitbox();
-			iconP2.updateHitbox();
-		}
-		else
-		{
-	
-			iconP1.setGraphicSize(Std.int(iconP1.width + 4));
-			iconP2.setGraphicSize(Std.int(iconP2.width + 4));
-	
-			iconP1.updateHitbox();
-			iconP2.updateHitbox();
 		}
 
 		if (!endingSong && currentSection != null)

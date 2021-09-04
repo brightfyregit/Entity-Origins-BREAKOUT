@@ -31,23 +31,24 @@ class HealthIcon extends FlxSprite
 		scrollFactor.set();
 	}
 
-	public function swapOldIcon()
-	{
-		(isOldIcon = !isOldIcon) ? changeIcon("bf-old") : changeIcon(char);
-	}
-
 	public function changeIcon(char:String)
 	{
-		if (char != 'bf-pixel' && char != 'bf-old')
-			char = char.split("-")[0];
+		frames = Paths.getSparrowAtlas('IconAssets', 'preload');
 
-		loadGraphic(Paths.image('icons/icon-' + char), true, 150, 150);
-		if(char.endsWith('-pixel') || char.startsWith('senpai') || char.startsWith('spirit'))
-			antialiasing = false
+		if (isPlayer)
+		{
+			animation.addByPrefix('loss', '06Loosing', 24, true, isPlayer);
+			animation.addByPrefix('normal', '06 Normal', 24, true, isPlayer);
+			animation.addByPrefix('win', '06Winning', 24, true, isPlayer);
+		}
 		else
-			antialiasing = FlxG.save.data.antialiasing;
-		animation.add(char, [0, 1], 0, false, isPlayer);
-		animation.play(char);
+		{
+			animation.addByPrefix('loss', 'DaidemLoosing', 24, true, isPlayer);
+			animation.addByPrefix('normal', 'DaidemNormal', 24, true, isPlayer);
+			animation.addByPrefix('win', 'DaidemWinning', 24, true, isPlayer);
+		}
+
+		animation.play('normal', true);
 	}
 
 	override function update(elapsed:Float)

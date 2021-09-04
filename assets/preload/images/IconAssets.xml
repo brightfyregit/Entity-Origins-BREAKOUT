@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="IconAssets.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="06 Normal0000" x="0" y="0" width="141" height="101" frameX="0" frameY="-5" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0001" x="141" y="0" width="140" height="102" frameX="0" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0002" x="281" y="0" width="140" height="102" frameX="0" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0003" x="421" y="0" width="139" height="103" frameX="-1" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0004" x="560" y="0" width="139" height="104" frameX="-1" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0005" x="699" y="0" width="138" height="105" frameX="-1" frameY="-2" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0006" x="837" y="0" width="138" height="107" frameX="-1" frameY="0" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0007" x="975" y="0" width="138" height="106" frameX="-1" frameY="-1" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0008" x="1113" y="0" width="138" height="105" frameX="-1" frameY="-2" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0009" x="1251" y="0" width="139" height="104" frameX="-1" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0010" x="1390" y="0" width="139" height="104" frameX="-1" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0011" x="1529" y="0" width="140" height="102" frameX="0" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0012" x="1669" y="0" width="140" height="102" frameX="0" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0013" x="1809" y="0" width="140" height="102" frameX="0" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06 Normal0014" x="0" y="0" width="141" height="101" frameX="0" frameY="-5" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Loosing0000" x="0" y="107" width="141" height="101" frameX="-1" frameY="-5" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0001" x="141" y="107" width="137" height="107" frameX="-2" frameY="-1" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0002" x="278" y="107" width="141" height="101" frameX="-1" frameY="-5" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0003" x="419" y="107" width="138" height="106" frameX="-1" frameY="0" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0004" x="557" y="107" width="140" height="102" frameX="-2" frameY="-5" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0005" x="697" y="107" width="137" height="107" frameX="-2" frameY="-2" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0006" x="834" y="107" width="141" height="100" frameX="-1" frameY="-6" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0007" x="975" y="107" width="138" height="107" frameX="-2" frameY="0" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0008" x="278" y="107" width="141" height="101" frameX="-1" frameY="-5" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0009" x="1113" y="107" width="138" height="107" frameX="-2" frameY="0" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0010" x="1251" y="107" width="141" height="101" frameX="-1" frameY="-5" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0011" x="1392" y="107" width="138" height="107" frameX="-2" frameY="0" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0012" x="1530" y="107" width="140" height="102" frameX="0" frameY="-4" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0013" x="975" y="107" width="138" height="107" frameX="-2" frameY="0" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Loosing0014" x="1670" y="107" width="140" height="104" frameX="-3" frameY="-4" frameWidth="143" frameHeight="109"/>
+	<SubTexture name="06Winning0000" x="1810" y="107" width="141" height="101" frameX="0" frameY="-5" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0001" x="0" y="214" width="139" height="102" frameX="-1" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0002" x="139" y="214" width="136" height="104" frameX="-2" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0003" x="275" y="214" width="132" height="107" frameX="-4" frameY="0" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0004" x="407" y="214" width="136" height="104" frameX="-2" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0005" x="543" y="214" width="139" height="103" frameX="-1" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0006" x="682" y="214" width="141" height="101" frameX="0" frameY="-5" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0007" x="823" y="214" width="139" height="102" frameX="-1" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0008" x="962" y="214" width="136" height="104" frameX="-2" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0009" x="1098" y="214" width="132" height="107" frameX="-4" frameY="0" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0010" x="1230" y="214" width="136" height="104" frameX="-2" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0011" x="1366" y="214" width="139" height="103" frameX="-1" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0012" x="1505" y="214" width="141" height="101" frameX="0" frameY="-5" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0013" x="1646" y="214" width="139" height="102" frameX="-1" frameY="-4" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0014" x="1785" y="214" width="136" height="104" frameX="-2" frameY="-3" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="06Winning0015" x="0" y="321" width="132" height="107" frameX="-4" frameY="0" frameWidth="141" frameHeight="107"/>
+	<SubTexture name="DaidemLoosing0000" x="132" y="321" width="107" height="133" frameX="-1" frameY="-5" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0001" x="239" y="321" width="107" height="134" frameX="-1" frameY="-4" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0002" x="346" y="321" width="104" height="138" frameX="0" frameY="-1" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0003" x="450" y="321" width="104" height="139" frameX="0" frameY="0" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0004" x="554" y="321" width="99" height="138" frameX="-5" frameY="-1" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0005" x="653" y="321" width="98" height="138" frameX="-5" frameY="-1" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0006" x="751" y="321" width="100" height="116" frameX="-5" frameY="-23" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0007" x="851" y="321" width="100" height="115" frameX="-5" frameY="-24" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0008" x="951" y="321" width="95" height="112" frameX="-6" frameY="-27" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0009" x="1046" y="321" width="96" height="112" frameX="-5" frameY="-27" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0010" x="1142" y="321" width="105" height="126" frameX="-4" frameY="-13" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0011" x="1247" y="321" width="105" height="125" frameX="-4" frameY="-14" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0012" x="1352" y="321" width="107" height="132" frameX="-1" frameY="-6" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemLoosing0013" x="1459" y="321" width="107" height="131" frameX="-1" frameY="-7" frameWidth="109" frameHeight="139"/>
+	<SubTexture name="DaidemNormal0000" x="1566" y="321" width="107" height="132" frameX="-1" frameY="-4" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0001" x="1673" y="321" width="106" height="133" frameX="-1" frameY="-3" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0002" x="1779" y="321" width="103" height="136" frameX="0" frameY="0" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0003" x="1882" y="321" width="102" height="136" frameX="0" frameY="0" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0004" x="0" y="460" width="99" height="136" frameX="-5" frameY="-1" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0005" x="99" y="460" width="98" height="136" frameX="-6" frameY="-1" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0006" x="197" y="460" width="99" height="115" frameX="-5" frameY="-22" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0007" x="296" y="460" width="100" height="114" frameX="-4" frameY="-23" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0008" x="396" y="460" width="97" height="111" frameX="-5" frameY="-26" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0009" x="493" y="460" width="97" height="110" frameX="-5" frameY="-26" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0010" x="590" y="460" width="106" height="124" frameX="-3" frameY="-12" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0011" x="696" y="460" width="106" height="124" frameX="-3" frameY="-12" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0012" x="802" y="460" width="106" height="131" frameX="-1" frameY="-5" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemNormal0013" x="908" y="460" width="107" height="130" frameX="-1" frameY="-6" frameWidth="109" frameHeight="137"/>
+	<SubTexture name="DaidemWinning0000" x="1015" y="460" width="107" height="132" frameX="-2" frameY="-3" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0001" x="1122" y="460" width="107" height="132" frameX="-2" frameY="-1" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0002" x="1229" y="460" width="104" height="134" frameX="0" frameY="-1" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0003" x="1333" y="460" width="105" height="135" frameX="-1" frameY="0" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0004" x="1438" y="460" width="101" height="133" frameX="-5" frameY="-2" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0005" x="1539" y="460" width="102" height="133" frameX="-6" frameY="-1" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0006" x="1641" y="460" width="104" height="112" frameX="-5" frameY="-23" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0007" x="1745" y="460" width="103" height="112" frameX="-4" frameY="-23" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0008" x="1848" y="460" width="99" height="109" frameX="-6" frameY="-25" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0009" x="1947" y="460" width="99" height="109" frameX="-5" frameY="-25" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0010" x="0" y="596" width="108" height="122" frameX="-4" frameY="-12" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0011" x="108" y="596" width="107" height="122" frameX="-4" frameY="-12" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0012" x="215" y="596" width="107" height="130" frameX="-2" frameY="-3" frameWidth="112" frameHeight="135"/>
+	<SubTexture name="DaidemWinning0013" x="322" y="596" width="107" height="130" frameX="-2" frameY="-5" frameWidth="112" frameHeight="135"/>
+</TextureAtlas>
