@@ -143,7 +143,7 @@ class PlayState extends MusicBeatState
 	public static var playerStrums:FlxTypedGroup<StaticArrow> = null;
 	public static var cpuStrums:FlxTypedGroup<StaticArrow> = null;
 
-	private var camZooming:Bool = false;
+	public var camZooming:Bool = false;
 	private var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
@@ -190,7 +190,7 @@ class PlayState extends MusicBeatState
 	var notesHitArray:Array<Date> = [];
 	var currentFrames:Int = 0;
 	var idleToBeat:Bool = false; // change if bf and dad would idle to the beat of the song
-	var idleBeat:Int = 2; // how frequently bf and dad would play their idle animation(1 - every beat, 2 - every 2 beats and so on)
+	var idleBeat:Int = 4; // how frequently bf and dad would play their idle animation(1 - every beat, 2 - every 2 beats and so on)
 
 	public static var trainSound:FlxSound;
 
@@ -3857,6 +3857,10 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				combo += 1;
 			}
+			else
+			{
+				health += 0.02;
+			}
 
 			var altAnim:String = "";
 			if (note.isAlt)
@@ -3943,6 +3947,10 @@ class PlayState extends MusicBeatState
 			case 'experimental-phase':
 				switch (curStep)
 				{
+					case 776 | 808:
+						Stage.camZoom = 1.1;
+					case 784 | 816:
+						Stage.camZoom = 0.9;
 					case 1155:
 						camZooming = false;
 				}

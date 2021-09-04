@@ -17,7 +17,7 @@ class Character extends FlxSprite
 
 	public var holdTimer:Float = 0;
 
-	public var singDuration:Float = 4;
+	public var singDuration:Float = 6;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -104,7 +104,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
-				singDuration = 8;
+				singDuration = 10;
 
 				playAnim('idle');
 
@@ -185,7 +185,7 @@ class Character extends FlxSprite
 				holdTimer += elapsed;
 			}
 
-			if (holdTimer >= Conductor.stepCrochet * 0.001 * singDuration)
+			if ((holdTimer >= Conductor.stepCrochet * 0.001 * singDuration) && ((!PlayState.instance.currentSection.mustHitSection || !PlayState.instance.camZooming) || curCharacter != 'sex'))
 			{
 				trace('dance');
 				dance();

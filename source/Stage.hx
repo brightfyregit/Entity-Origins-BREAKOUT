@@ -35,6 +35,13 @@ class Stage
 				camZoom = 0.9;
 				curStage = 'stage';
 
+                var thing:FlxSprite = new FlxSprite(-600, -240).loadGraphic(Paths.image('Stage_LayerBack'));
+				thing.antialiasing = FlxG.save.data.antialiasing;
+				thing.scrollFactor.set(0.8, 0.8);
+				thing.active = false;
+				swagBacks['thing'] = thing;
+				toAdd.push(thing);
+
 				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('Stage_LayerTop'));
 				bg.antialiasing = FlxG.save.data.antialiasing;
 				bg.scrollFactor.set(0.9, 0.9);

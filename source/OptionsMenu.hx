@@ -89,9 +89,7 @@ class OptionsMenu extends MusicBeatState
 	{
 		clean();
 		instance = this;
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("menuDesat"));
-
-		menuBG.color = 0xFFea71fd;
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("menuBGBlue"));
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
@@ -104,6 +102,7 @@ class OptionsMenu extends MusicBeatState
 		for (i in 0...options.length)
 		{
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, options[i].getName(), true, false, true);
+			controlLabel.black = true;
 			controlLabel.isMenuItem = true;
 			controlLabel.targetY = i;
 			grpControls.add(controlLabel);

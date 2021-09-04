@@ -52,6 +52,8 @@ class Alphabet extends FlxSpriteGroup
 	var xScale:Float;
 	var yScale:Float;
 
+	public var black:Bool = false;
+
 	// ThatGuy: Added 2 more variables, xScale and yScale for resizing text
 	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, shouldMove:Bool = false, xScale:Float = 1, yScale:Float = 1)
 	{
@@ -120,7 +122,6 @@ class Alphabet extends FlxSpriteGroup
 			}
 
 			if (AlphaCharacter.alphabet.indexOf(character.toLowerCase()) != -1)
-				// if (AlphaCharacter.alphabet.contains(character.toLowerCase()))
 			{
 				if (lastSprite != null)
 				{
@@ -137,7 +138,7 @@ class Alphabet extends FlxSpriteGroup
 
 				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0);
-				
+				letter.black = this.black;
 				// ThatGuy: These are the lines that change the individual scaling of each character
 				letter.scale.set(xScale, yScale);
 				letter.updateHitbox();
@@ -205,8 +206,6 @@ class Alphabet extends FlxSpriteGroup
 			#end
 
 			if (AlphaCharacter.alphabet.indexOf(splitWords[loopNum].toLowerCase()) != -1 || isNumber || isSymbol)
-				// if (AlphaCharacter.alphabet.contains(splitWords[loopNum].toLowerCase()) || isNumber || isSymbol)
-
 			{
 				if (lastSprite != null && !xPosResetted)
 				{
@@ -227,8 +226,8 @@ class Alphabet extends FlxSpriteGroup
 				}
 				// trace(_finalText.fastCodeAt(loopNum) + " " + _finalText.charAt(loopNum));
 
-				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 55 * yMulti);
+				letter.black = this.black;
 				listOAlphabets.add(letter);
 				letter.row = curRow;
 				if (isBold)
@@ -324,15 +323,21 @@ class AlphaCharacter extends FlxSprite
 
 	public var row:Int = 0;
 
+	public var black:Bool = false;
+
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
 		var tex = Paths.getSparrowAtlas('alphabet');
+		if (black)
+		{
+			tex = Paths.getSparrowAtlas('alphabetblack');
+		}
 		frames = tex;
-		if(FlxG.save.data.antialiasing)
-			{
-				antialiasing = true;
-			}
+		if (FlxG.save.data.antialiasing)
+		{
+			antialiasing = true;
+		}
 	}
 
 	public function createBold(letter:String)

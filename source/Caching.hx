@@ -37,9 +37,6 @@ class Caching extends MusicBeatState
 
 	var loaded = false;
 
-	var text:FlxText;
-	var kadeLogo:FlxSprite;
-
 	public static var bitmapData:Map<String,FlxGraphic>;
 
 	var images = [];
@@ -66,24 +63,6 @@ class Caching extends MusicBeatState
         FlxGraphic.defaultPersist = true;
 
 		bitmapData = new Map<String,FlxGraphic>();
-
-		text = new FlxText(FlxG.width / 2, FlxG.height / 2 + 300,0,"Loading...");
-		text.size = 34;
-		text.alignment = FlxTextAlign.CENTER;
-		text.alpha = 0;
-
-		kadeLogo = new FlxSprite(FlxG.width / 2, FlxG.height / 2).loadGraphic(Paths.image('KadeEngineLogo'));
-		kadeLogo.x -= kadeLogo.width / 2;
-		kadeLogo.y -= kadeLogo.height / 2 + 100;
-		text.y -= kadeLogo.height / 2 - 125;
-		text.x -= 170;
-		kadeLogo.setGraphicSize(Std.int(kadeLogo.width * 0.6));
-		if(FlxG.save.data.antialiasing != null)
-			kadeLogo.antialiasing = FlxG.save.data.antialiasing;
-		else
-			kadeLogo.antialiasing = true;
-		
-		kadeLogo.alpha = 0;
 
 		FlxGraphic.defaultPersist = FlxG.save.data.cacheImages;
 
@@ -115,27 +94,10 @@ class Caching extends MusicBeatState
 
 		add(bar);
 
-		add(kadeLogo);
-		add(text);
-
 		trace('starting caching..');
 		
 		#if cpp
 		// update thread
-
-		sys.thread.Thread.create(() -> {
-			while(!loaded)
-			{
-				if (toBeDone != 0 && done != toBeDone)
-					{
-						var alpha = HelperFunctions.truncateFloat(done / toBeDone * 100,2) / 100;
-						kadeLogo.alpha = alpha;
-						text.alpha = alpha;
-						text.text = "Loading... (" + done + "/" + toBeDone + ")";
-					}
-			}
-		
-		});
 
 		// cache thread
 
