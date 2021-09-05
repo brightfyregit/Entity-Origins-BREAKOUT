@@ -305,9 +305,9 @@ class GameJoltLogin extends MusicBeatSubstate
             FlxG.switchState(new MainMenuState());
         }
 
-        if (FlxG.mouse.overlaps(icon))
+        if (FlxG.mouse.overlaps(icon) && icon.visible)
         {
-            if (FlxG.mouse.pressed)
+            if (FlxG.mouse.justPressed)
             {
                 MusicBeatState.fancyOpenURL('https://gamejolt.com');
             }
