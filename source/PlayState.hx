@@ -1,6 +1,7 @@
 package;
 
 
+import GameJolt.GameJoltAPI;
 import lime.media.openal.AL;
 import Song.Event;
 import openfl.media.Sound;
@@ -2820,6 +2821,11 @@ class PlayState extends MusicBeatState
 					transOut = FlxTransitionableState.defaultTransOut;
 
 					paused = true;
+
+					if (campaignMisses == 0)
+					{
+						GameJoltAPI.getTrophy(147812);
+					}
 
 					FlxG.sound.music.stop();
 					vocals.stop();

@@ -1,5 +1,7 @@
 package;
 
+import GameJolt.GameJoltLogin;
+import GameJolt.GameJoltAPI;
 #if sys
 import smTools.SMFile;
 #end
@@ -53,30 +55,13 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if sys
-		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
-		#end
-
 		@:privateAccess
 		{
 			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
 		}
-		
-		#if !cpp
 
-		FlxG.save.bind('funkin', 'breakout');
-
-		PlayerSettings.init();
-
-		KadeEngineData.initSave();
-		
-		#end
-
-
-				
-		Highscore.load();
-
+		GameJoltAPI.connect();
+		GameJoltAPI.authDaUser(FlxG.save.data.gjUser, FlxG.save.data.gjToken);
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
@@ -93,22 +78,11 @@ class TitleState extends MusicBeatState
 		trace('NEWGROUNDS LOL');
 		#end
 
-		#if FREEPLAY
-		FlxG.switchState(new FreeplayState());
-		clean();
-		#elseif CHARTING
-		FlxG.switchState(new ChartingState());
-		clean();
-		#else
-		#if !cpp
+
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			startIntro();
 		});
-		#else
-		startIntro();
-		#end
-		#end
 	}
 
 	var logoBl:FlxSprite;
@@ -121,9 +95,6 @@ class TitleState extends MusicBeatState
 		persistentUpdate = true;
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		// bg.antialiasing = FlxG.save.data.antialiasing;
-		// bg.setGraphicSize(Std.int(bg.width * 0.6));
-		// bg.updateHitbox();
 		add(bg);
 
 		logoBl = new FlxSprite(-75, -50);
@@ -224,9 +195,16 @@ class TitleState extends MusicBeatState
 
 	function getIntroTextShit():Array<Array<String>>
 	{
-		var fullText:String = Assets.getText(Paths.txt('data/introText'));
+		//1 in 69% chance
+		var trueending:Bool = FlxG.random.bool(1.45);
+		var result:String = 'mercurie--funkin ur REDACTED';
+		if (trueending)
+		{
+			result = 'mercurie--fucking ur mom';
+			//GameJoltAPI.getTrophy(147821);
+		}
 
-		var firstArray:Array<String> = fullText.split('\n');
+		var firstArray:Array<String> = result.split('\n');
 		var swagGoodArray:Array<Array<String>> = [];
 
 		for (i in firstArray)
@@ -286,7 +264,8 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				FlxG.switchState(new MainMenuState()); // fail but we go anyway
+				FlxG.switchState(new GameJoltLogin());
+				//FlxG.switchState(new MainMenuState()); // fail but we go anyway
 				clean();
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
@@ -334,9 +313,11 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		bop.animation.play('bump', true);
+		if (bop != null)
+			bop.animation.play('bump', true);
+		if (logoBl != null)
+			logoBl.animation.play('bump', true);
 
-		logoBl.animation.play('bump', true);
 		danceLeft = !danceLeft;
 
 		FlxG.log.add(curBeat);

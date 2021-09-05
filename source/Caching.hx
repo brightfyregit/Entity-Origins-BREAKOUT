@@ -1,20 +1,16 @@
-#if sys
 package;
 
+import flixel.util.FlxSave;
 import lime.app.Application;
-#if windows
 import Discord.DiscordClient;
-#end
 import openfl.display.BitmapData;
 import openfl.utils.Assets;
 import flixel.ui.FlxBar;
 import haxe.Exception;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-#if cpp
 import sys.FileSystem;
 import sys.io.File;
-#end
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
@@ -27,6 +23,7 @@ import flixel.math.FlxRect;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.text.FlxText;
+import GameJolt.GameJoltLogin;
 
 using StringTools;
 
@@ -46,14 +43,14 @@ class Caching extends MusicBeatState
 
 	override function create()
 	{
+		#if sys
+		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
+			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
+		#end
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		FlxG.save.bind('funkin', 'breakout');
 
-		PlayerSettings.init();
-
-		KadeEngineData.initSave();
-
-        FlxG.sound.volume = 1;
+		FlxG.sound.volume = 1;
         FlxG.sound.muted = false;
 		FlxG.fixedTimestep = false;
 		FlxG.mouse.useSystemCursor = true;
@@ -61,6 +58,20 @@ class Caching extends MusicBeatState
 		FlxG.console.autoPause = false;
         FlxG.autoPause = false;
         FlxGraphic.defaultPersist = true;
+
+		PlayerSettings.init();
+
+		#if windows
+		DiscordClient.initialize();
+
+		Application.current.onExit.add (function (exitCode) {
+			DiscordClient.shutdown();
+		 });
+		 
+		#end
+
+		KadeEngineData.initSave();
+		Highscore.load();
 
 		bitmapData = new Map<String,FlxGraphic>();
 
@@ -150,8 +161,8 @@ class Caching extends MusicBeatState
 		trace(Assets.cache.hasBitmapData('GF_assets'));
 
 		#end
+
 		FlxG.switchState(new TitleState());
 	}
 
 }
-#end

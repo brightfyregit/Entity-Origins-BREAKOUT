@@ -15,6 +15,8 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
+import GameJolt.GameJoltLogin;
+import GameJolt.GameJoltAPI;
 
 #if windows
 import Discord.DiscordClient;
@@ -148,6 +150,7 @@ class MainMenuState extends MusicBeatState
 	function cutEnd():Void
 	{
 		canEnter = true;
+		GameJoltAPI.getTrophy(147808);
 		FlxG.sound.playMusic(Paths.music('freakyMenu'));
 	}
 
@@ -196,54 +199,48 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.BACK)
 			{
-				FlxG.switchState(new TitleState());
+				FlxG.switchState(new GameJoltLogin());
+				//FlxG.switchState(new TitleState());
 			}
 
 			if (controls.ACCEPT && canEnter)
 			{
-				if (optionShit[curSelected] == 'donate')
-				{
-					fancyOpenURL("https://ninja-muffin24.itch.io/funkin");
-				}
-				else
-				{
-					selectedSomethin = true;
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-					
-					if (FlxG.save.data.flashing)
-						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+				selectedSomethin = true;
+				FlxG.sound.play(Paths.sound('confirmMenu'));
+				
+				if (FlxG.save.data.flashing)
+					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 
-					menuItems.forEach(function(spr:FlxSprite)
+				menuItems.forEach(function(spr:FlxSprite)
+				{
+					if (curSelected != spr.ID)
 					{
-						if (curSelected != spr.ID)
+						FlxTween.tween(spr, {alpha: 0}, 1.3, {
+							ease: FlxEase.quadOut,
+							onComplete: function(twn:FlxTween)
+							{
+								spr.kill();
+							}
+						});
+					}
+					else
+					{
+						if (FlxG.save.data.flashing)
 						{
-							FlxTween.tween(spr, {alpha: 0}, 1.3, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
+							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+							{
+								goToState();
 							});
 						}
 						else
 						{
-							if (FlxG.save.data.flashing)
+							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
-								FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-								{
-									goToState();
-								});
-							}
-							else
-							{
-								new FlxTimer().start(1, function(tmr:FlxTimer)
-								{
-									goToState();
-								});
-							}
+								goToState();
+							});
 						}
-					});
-				}
+					}
+				});
 			}
 		}
 
@@ -262,6 +259,7 @@ class MainMenuState extends MusicBeatState
 		switch (daChoice)
 		{
 			case 'story mode':
+				PlayState.campaignMisses = 0;
 				PlayState.storyPlaylist = ['Experimental-Phase', 'Perfection'];
 				PlayState.isStoryMode = true;
 	
