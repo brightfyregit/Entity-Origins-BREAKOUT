@@ -37,8 +37,11 @@ jobs:
           haxelib install linc_luajit
           haxelib install actuate 
           haxelib install systools
+          haxelib install hxvm-luajit
           haxelib list
-          haxelib run lime build windows
+          
+      - name: Ok now we acutally compile
+        run: haxelib run lime build windows
           
       - name: Compress
         run: tar -czf bin.tar.gz export/release/windows/bin
