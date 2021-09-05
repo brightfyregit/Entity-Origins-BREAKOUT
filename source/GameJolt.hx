@@ -199,8 +199,8 @@ class GameJoltLogin extends MusicBeatSubstate
 		icon.antialiasing = true;
 		icon.updateHitbox();
 		icon.scrollFactor.set();
-		add(icon);
-        icon.visible = GameJoltAPI.getStatus();
+        if (GameJoltAPI.getStatus())
+		    add(icon);
 
         loginTexts = new FlxTypedGroup<FlxText>(2);
         add(loginTexts);
@@ -307,7 +307,7 @@ class GameJoltLogin extends MusicBeatSubstate
 
         if (FlxG.mouse.overlaps(icon))
         {
-            if (FlxG.mouse.pressed)
+            if (FlxG.mouse.justPressed && GameJoltAPI.getStatus())
             {
                 MusicBeatState.fancyOpenURL('https://gamejolt.com');
             }

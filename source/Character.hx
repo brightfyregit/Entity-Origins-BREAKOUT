@@ -69,7 +69,7 @@ class Character extends FlxSprite
 
 			case 'daidem':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('Daidem_assets','shared',true);
+				tex = Paths.getSparrowAtlas('DaidemAssetsREwork','shared',true);
 				frames = tex;
 				animation.addByPrefix('idle', 'Idke', 24, true);
 				animation.addByPrefix('singUP', 'Up', 24, false);

@@ -1,6 +1,7 @@
 package;
 
 
+import lime.app.Application;
 import GameJolt.GameJoltAPI;
 import lime.media.openal.AL;
 import Song.Event;
@@ -456,6 +457,8 @@ class PlayState extends MusicBeatState
 		if (isStoryMode)
 			songMultiplier = 1;
 
+		Application.current.window.title = Main.appTitle;
+
 		// defaults if no gf was found in chart
 		var gfCheck:String = 'gf';
 
@@ -491,34 +494,36 @@ class PlayState extends MusicBeatState
 		dad = new Character(-250, -100, "daidem");
 
 		if (!PlayStateChangeables.Optimize)
+		{
+			Stage = new Stage('stage');
+			for (i in Stage.toAdd)
 			{
-				Stage = new Stage('stage');
-				for (i in Stage.toAdd)
+				add(i);
+			}
+			for (index => array in Stage.layInFront)
+			{
+				switch (index)
 				{
-					add(i);
-				}
-				for (index => array in Stage.layInFront)
-				{
-					switch (index)
-					{
-						case 0:
-							//add(gf);
-							gf.scrollFactor.set(0.95, 0.95);
-							for (bg in array)
-								add(bg);
-						case 1:
-							add(dad);
-							for (bg in array)
-								add(bg);
-						case 2:
-							add(boyfriend);
-							for (bg in array)
-								add(bg);
-					}
+					case 0:
+						//add(gf);
+						gf.scrollFactor.set(0.95, 0.95);
+						for (bg in array)
+							add(bg);
+					case 1:
+						add(dad);
+						for (bg in array)
+							add(bg);
+					case 2:
+						add(boyfriend);
+						for (bg in array)
+							add(bg);
 				}
 			}
+		}
 
 		getCamOffsets();
+
+		Application.current.window.title = Main.appTitle + ' - ' + HelperFunctions.getArtist(SONG.song.toLowerCase()) + ' - ' + StringTools.replace(SONG.song.toUpperCase(), " ", "-") + ' [' + storyDifficultyText + ']';
 
 		var camPos:FlxPoint = new FlxPoint(dadPos[0], dadPos[1]);
 

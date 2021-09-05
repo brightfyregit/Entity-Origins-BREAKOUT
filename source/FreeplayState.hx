@@ -155,6 +155,8 @@ class FreeplayState extends MusicBeatState
 
 		persistentUpdate = true;
 
+		Application.current.window.title = Main.appTitle;
+
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
